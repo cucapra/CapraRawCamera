@@ -206,7 +206,7 @@ public class MyApplicationInterface implements ApplicationInterface {
     @Override
 	public boolean useCamera2() {
         if( main_activity.supportsCamera2() ) {
-    		return sharedPreferences.getBoolean(PreferenceKeys.UseCamera2PreferenceKey, false);
+    		return sharedPreferences.getBoolean(PreferenceKeys.UseCamera2PreferenceKey, true);
         }
         return false;
     }
