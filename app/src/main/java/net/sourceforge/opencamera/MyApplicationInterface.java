@@ -863,7 +863,7 @@ public class MyApplicationInterface implements ApplicationInterface {
 	public boolean isRawPref() {
     	if( isImageCaptureIntent() )
     		return false;
-    	return sharedPreferences.getString(PreferenceKeys.RawPreferenceKey, "preference_raw_no").equals("preference_raw_yes");
+    	return sharedPreferences.getString(PreferenceKeys.RawPreferenceKey, "preference_raw_yes").equals("preference_raw_yes");
     }
 
     @Override
