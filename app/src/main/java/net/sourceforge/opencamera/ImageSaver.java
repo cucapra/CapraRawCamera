@@ -13,8 +13,10 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -2059,6 +2061,12 @@ public class ImageSaver extends Thread {
 	    		if( MyDebug.LOG )
 	    			Log.d(TAG, "location: " + location);
     		}*/
+
+    		// upload to google drive
+			GoogleDriveUploader uploader = GoogleDriveUploader.getInstance();
+			Map<String, String> metaData = new HashMap<>();
+			metaData.put("name", "raw.dng");
+			uploader.upload(picFile.getPath(), metaData);
 
     		if( saveUri == null ) {
     			success = true;
