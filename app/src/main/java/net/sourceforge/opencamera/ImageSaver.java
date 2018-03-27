@@ -2063,10 +2063,11 @@ public class ImageSaver extends Thread {
     		}*/
 
     		// upload to google drive
-			GoogleDriveUploader uploader = GoogleDriveUploader.getInstance();
+			// Add file to upload scheduler
 			Map<String, String> metaData = new HashMap<>();
 			metaData.put("name", "raw.dng");
-			uploader.upload(picFile.getPath(), metaData);
+			GoogleUploadScheduler scheduler = GoogleUploadScheduler.getInstance();
+			scheduler.scheduleUpload(picFile.getPath(),metaData);
 
     		if( saveUri == null ) {
     			success = true;

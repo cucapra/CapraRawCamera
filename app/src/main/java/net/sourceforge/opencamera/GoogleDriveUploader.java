@@ -1,6 +1,10 @@
 package net.sourceforge.opencamera;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
@@ -77,14 +81,13 @@ public class GoogleDriveUploader {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                String body;
-                try {
-                    body = new String(error.networkResponse.data,"UTF-8");
-                    Log.d(TAG, "That didn't work!\n" + body);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                if(error.networkResponse != null){
+                    int  statusCode = error.networkResponse.statusCode;
+                    NetworkResponse response = error.networkResponse;
+                    Log.d("testerror",""+statusCode+" "+response.data);
+                } else {
+                    Log.d(TAG, "onErrorResponse: networkResponse is null");
                 }
-
             }
         }){
             @Override
@@ -110,7 +113,7 @@ public class GoogleDriveUploader {
         RequestQueue queue = VolleyQueue.getInstance(mCtx).getRequestQueue();
         queue.add(tokenRequest);
     }
-    private void initResumable(final String token, final Map<String, String> metaData, final VolleyCallback callback){
+    private void initResumable(final String token, final String metaData, final VolleyCallback callback){
         StringRequest initialRequest = new StringRequest(Request.Method.POST, initurl,
                 new Response.Listener<String>() {
                     @Override
@@ -136,8 +139,7 @@ public class GoogleDriveUploader {
             @Override
             public byte[] getBody(){
                 Log.d(TAG, "getBody: Call getBody");
-                JSONObject jsonMeta = new JSONObject(metaData);
-                return jsonMeta.toString().getBytes();
+                return metaData.getBytes();
             }
             @Override
             public String getBodyContentType()
@@ -162,6 +164,9 @@ public class GoogleDriveUploader {
         RequestQueue queue = VolleyQueue.getInstance(mCtx).getRequestQueue();
         queue.add(initialRequest);
     }
+    private void initResumable(final String token, final Map<String, String> metaData, final VolleyCallback callback){
+        initResumable(token, new JSONObject(metaData).toString(), callback);
+    }
     private String uploadResumable(String accessToken, String gdLocation, String filePath) throws IOException {
         return new BinaryUploadRequest(mCtx, gdLocation)
                 .addHeader("Authorization", String.format("Bearer %s", accessToken))
@@ -174,6 +179,9 @@ public class GoogleDriveUploader {
     }
 
     public void upload(final String filePath, final Map<String, String> metaData){
+        upload(filePath, new JSONObject(metaData).toString());
+    }
+    public void upload(final String filePath, final String metaData){
         getToken(new VolleyCallback() {
             @Override
             public void onSuccess(final String token) {
@@ -191,4 +199,5 @@ public class GoogleDriveUploader {
             }
         });
     }
+
 }
