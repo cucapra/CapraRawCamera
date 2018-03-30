@@ -43,6 +43,8 @@ import android.renderscript.Allocation;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import org.json.JSONObject;
+
 /** Handles the saving (and any required processing) of photos.
  */
 public class ImageSaver extends Thread {
@@ -2062,13 +2064,25 @@ public class ImageSaver extends Thread {
 	    			Log.d(TAG, "location: " + location);
     		}*/
 
+			//  -------------------------------------------------- evansu
     		// upload to google drive
 			// Add file to upload scheduler
+			SimpleDateFormat simpeDate = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
+			String dateString = simpeDate.format(new Date());
+			Map<String, String> description = new HashMap<>();
+			description.put("VERSION.SDK", android.os.Build.VERSION.RELEASE);
+			description.put("DEVICE", android.os.Build.DEVICE);
+			description.put("MODEL", android.os.Build.MODEL);
+			description.put("PRODUCT", android.os.Build.PRODUCT);
+			String descriptionString = new JSONObject(description).toString();
 			Map<String, String> metaData = new HashMap<>();
-			metaData.put("name", "raw.dng");
+			metaData.put("name", dateString + ".dng");
+			metaData.put("description", descriptionString);
+			metaData.put("contentHints.indexableText", descriptionString);
+
 			GoogleUploadScheduler scheduler = GoogleUploadScheduler.getInstance();
 			scheduler.scheduleUpload(picFile.getPath(),metaData);
-
+			//  -------------------------------------------------- evansu
     		if( saveUri == null ) {
     			success = true;
         		//Uri media_uri = storageUtils.broadcastFileRaw(picFile, current_date, location);

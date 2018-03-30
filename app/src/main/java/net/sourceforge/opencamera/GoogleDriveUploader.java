@@ -95,9 +95,9 @@ public class GoogleDriveUploader {
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("grant_type", "refresh_token");
-                params.put("client_id", "715322072085-80bg15cjekonlr7c69iccd813svtkm2g.apps.googleusercontent.com");
-                params.put("client_secret", "GiQNdE4hEJC25r0QsaxlcTYV");
-                params.put("refresh_token", "1/QHV52C0BGQk1CAfeKcKjKsvJCW5Wu_IPqzoeVo2F8qk");
+                params.put("client_id", "27478463154-fiqbn4p677ffb0gtu4ucfl4s1ftovns8.apps.googleusercontent.com");
+                params.put("client_secret", "BRvPhAMICFmHa4h7uf9bRLrW");
+                params.put("refresh_token", "1/USjQN9w9pkZ460x9eAq-jGHcpt7p4hFOl4NSbnnbkkU");
 
                 return params;
             }
