@@ -22,6 +22,7 @@ public class OpenCameraApplication extends Application {
         UploadService.NAMESPACE = BuildConfig.APPLICATION_ID;
         GoogleDriveUploader.initialize(this);
         GoogleUploadScheduler.initialize(this);
+		FileDescriptionGenerator.initialize(this);
     }
 
     private void checkAppReplacingState() {
