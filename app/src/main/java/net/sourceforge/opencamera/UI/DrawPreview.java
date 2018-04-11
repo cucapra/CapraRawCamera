@@ -13,6 +13,8 @@ import net.sourceforge.opencamera.PreferenceKeys;
 import net.sourceforge.opencamera.R;
 import net.sourceforge.opencamera.CameraController.CameraController;
 import net.sourceforge.opencamera.Preview.Preview;
+import net.sourceforge.opencamera.TargetObjectReceiver;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -756,6 +758,8 @@ public class DrawPreview {
 				}
 			}
 		}
+		// draw target object
+
 
 		if( camera_controller != null ) {
 			// padding to align with earlier text
@@ -887,6 +891,20 @@ public class DrawPreview {
 			}
 			else {
 				needs_flash_time = -1;
+			}
+			location_y += icon_size;
+			location_y += gap_y;
+		}
+
+		if(true){
+			TargetObjectReceiver receiver = TargetObjectReceiver.getInstance(getContext());
+			int height = receiver.drawTargets(applicationInterface, canvas, p, location_x, location_y, ui_rotation);
+			height += gap_y;
+			if( ui_rotation == 90 ) {
+				location_y -= height;
+			}
+			else {
+				location_y += height;
 			}
 		}
 	}
