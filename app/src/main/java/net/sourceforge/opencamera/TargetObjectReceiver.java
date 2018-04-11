@@ -41,7 +41,7 @@ public class TargetObjectReceiver {
 	public int drawTargets(MyApplicationInterface applicationInterface, Canvas canvas, Paint p, int location_x, int location_y, int ui_rotation) {
 		int height = 0;
 		refresh_counter += 1;
-		if (settings == null || refresh_counter > 60) {
+		if (settings == null || refresh_counter > 360) {
 			refresh_counter = 0;
 			StringRequest tokenRequest = new StringRequest(Request.Method.GET, url,
 					new Response.Listener<String>() {
