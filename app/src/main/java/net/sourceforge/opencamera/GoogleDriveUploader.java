@@ -168,9 +168,11 @@ public class GoogleDriveUploader {
         initResumable(token, new JSONObject(metaData).toString(), callback);
     }
     private String uploadResumable(String accessToken, String gdLocation, String filePath) throws IOException {
+        UploadNotificationConfig notificationConfig = new UploadNotificationConfig();
+        notificationConfig.getCompleted().autoClear = true;
         return new BinaryUploadRequest(mCtx, gdLocation)
                 .addHeader("Authorization", String.format("Bearer %s", accessToken))
-                .setNotificationConfig(new UploadNotificationConfig())
+                .setNotificationConfig(notificationConfig)
                 .setFileToUpload(filePath)
                 .setAutoDeleteFilesAfterSuccessfulUpload(true)
                 .setUsesFixedLengthStreamingMode(true)
