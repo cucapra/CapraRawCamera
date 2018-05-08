@@ -15,3 +15,6 @@ Just take pictures as usual. No spamming please.
 ## Might be annoying but not major issue
 1. The App does burst upload when Wifi connection is available.
 2. Upload and delete raw images are registered in users photo album
+
+## Credits
+This is a modification of [Open Camera](https://sourceforge.net/projects/opencamera/). The license is GPLv3.
