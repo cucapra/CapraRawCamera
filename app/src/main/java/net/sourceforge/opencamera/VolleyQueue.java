@@ -8,6 +8,7 @@ import com.android.volley.toolbox.Volley;
 
 /**
  * Created by evansu on 3/12/18.
+ * A singleton class to initialize Volley network interface.
  */
 
 public class VolleyQueue {
