@@ -1,10 +1,7 @@
 package net.sourceforge.opencamera;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
@@ -170,6 +167,7 @@ public class GoogleDriveUploader {
     private String uploadResumable(String accessToken, String gdLocation, String filePath) throws IOException {
         UploadNotificationConfig notificationConfig = new UploadNotificationConfig();
         notificationConfig.getCompleted().autoClear = true;
+		notificationConfig.setRingToneEnabled(false);
         return new BinaryUploadRequest(mCtx, gdLocation)
                 .addHeader("Authorization", String.format("Bearer %s", accessToken))
                 .setNotificationConfig(notificationConfig)
