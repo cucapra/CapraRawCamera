@@ -10,6 +10,10 @@ import net.gotev.uploadservice.UploadService;
  *  https://issuetracker.google.com/issues/36972466#comment14 for Google bug crash. It seems ugly,
  *  but Google consider this a low priority despite calling these "bad behaviours" in applications!
  */
+
+/* 
+* Initialize singleton classes here. 
+*/
 public class OpenCameraApplication extends Application {
 	private static final String TAG = "OpenCameraApplication";
 
@@ -20,7 +24,7 @@ public class OpenCameraApplication extends Application {
         super.onCreate();
         checkAppReplacingState();
         UploadService.NAMESPACE = BuildConfig.APPLICATION_ID;
-		UploadService.UPLOAD_POOL_SIZE = 1; // one upload at a time
+		UploadService.UPLOAD_POOL_SIZE = 1; // Only use one thread. So one upload at a time.
         GoogleDriveUploader.initialize(this);
         GoogleUploadScheduler.initialize(this);
 		FileDescriptionGenerator.initialize(this);
