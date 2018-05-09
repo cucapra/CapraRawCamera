@@ -18,7 +18,8 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Created by evansu on 4/11/18.
- * A singleton class that fetch target object list on request
+ * A singleton class that downloads target object text file and displays it on the camera user interface.
+ * 
  */
 
 public class TargetObjectReceiver {
