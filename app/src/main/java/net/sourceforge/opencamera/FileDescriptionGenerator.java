@@ -11,6 +11,8 @@ import java.util.UUID;
 
 /**
  * Created by evansu on 3/29/18.
+ * FileDescriptionGenerator is a singleton class that generates description of captured raw images.
+ * It collects device information to identify user.
  */
 
 public class FileDescriptionGenerator {

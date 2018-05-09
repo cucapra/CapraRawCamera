@@ -16,6 +16,8 @@ import static net.sourceforge.opencamera.GoogleUploadScheduler.FILE_PATH_KEY;
 
 /**
  * Created by evansu on 3/19/18.
+ * GoogleDriveUploadService turns GoogleDriveUploader into a service that can be scheduled using
+ * GoogleUploadScheduler.
  */
 
 public class GoogleDriveUploadService extends JobService {

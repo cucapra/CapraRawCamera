@@ -25,6 +25,15 @@ import java.util.Map;
 
 /**
  * Created by evansu on 3/12/18.
+ * GoogleDriveUploader is a singleton class responsible for communication with Google Drive API.
+ * It performs resumable upload with the android-upload-service library (https://github.com/gotev/android-upload-service).
+ * Please see https://developers.google.com/drive/v3/web/resumable-upload for the protocal of resumable upload.
+ * An upload process consists of three steps.
+ * 1. Get access token of google drive api
+ * 2. Init resumable (upload meta data of the file and get a file ID)
+ * 3. Upload resumable (upload binary part of the file)
+ *
+ * Todo: using OAuth to get token is insecure. Maybe API Key.
  */
 
 public class GoogleDriveUploader {

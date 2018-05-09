@@ -14,7 +14,8 @@ import java.util.Map;
 
 /**
  * Created by evansu on 3/19/18.
- *
+ * This class provides automatic scheduling of upload request on top of GoogleDriveUploader. It
+ * only submit upload job when wifi is available.
  */
 
 public class GoogleUploadScheduler {
